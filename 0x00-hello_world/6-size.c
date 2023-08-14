@@ -21,7 +21,3 @@ int main(void)
 	return (0);
 }
 
-advanced task
-touch 100-intel 101-quote.c
-chmod a+x *
-/*the above commands will create the files required in the advanced tasks and make them excecutable respectively*/
