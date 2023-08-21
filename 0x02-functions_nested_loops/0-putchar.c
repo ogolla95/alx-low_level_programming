@@ -1,18 +1,21 @@
-/*
- * File: 0-holberton.c
- * Auth: Odhiambo Fredrick
- */
+#include "main.h"
 
-#include <stdio.h>
+/**
+*main - function prints text as output
+*
+*Return:return 0
+*/
+int main(void)
+{
+	char school[10] = "_putchar";
 
-int main() {
-    char *text = "_putchar\n"; // Store the desired text in a string
-    
-    while (*text != '\0') {   // Loop through the characters in the string
-        putchar(*text);       // Print the current character
-        text++;               // Move to the next character
-    }
-    
-    return 0; // Return 0 to indicate successful execution
+	int i;
+
+	for (i = 0; i < 8; i++)
+	{
+		_putchar(school[i]);
+	}
+	_putchar(10);
+	return (0);
 }
 
