@@ -1,29 +1,18 @@
 /*
  * File: 0-holberton.c
  * Auth: Odhiambo Fredrick
- * 
  */
 
-#include "holberton.h"
+#include <stdio.h>
 
-/**
- * main - Prints "Holberton" followed by a new line.
- *
- * Return: Always 0.
- */
-int main(void)
-{
-	_putchar('H');
-	_putchar('o');
-	_putchar('l');
-	_putchar('b');
-	_putchar('e');
-	_putchar('r');
-	_putchar('t');
-	_putchar('o');
-	_putchar('n');
-	_putchar('\n');
-
-	return (0);
+int main() {
+    char *text = "_putchar\n"; // Store the desired text in a string
+    
+    while (*text != '\0') {   // Loop through the characters in the string
+        putchar(*text);       // Print the current character
+        text++;               // Move to the next character
+    }
+    
+    return 0; // Return 0 to indicate successful execution
 }
 
