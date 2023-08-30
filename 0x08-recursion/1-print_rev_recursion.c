@@ -2,10 +2,8 @@
 
 /**
  *_puts_recursion - prints a string in reverse
- *
  *@s: source string
- *
- * Return: Always 0 (Success)
+ * Return: string printed 
  *
  *
  */
