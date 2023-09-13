@@ -1,15 +1,24 @@
-#include <stdlib.h>
 #include "function_pointers.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * print_name - prints a name
- * @name: name to print
- * @f: pointer to the printing function
- */
+  * print_name - initializes a variable
+  *
+  * @name: name.
+  * @f: pointer.
+  * Return: nothing.
+  */
 void print_name(char *name, void (*f)(char *))
 {
-	if (!name || !f)
+	if (name == NULL)
+	{
 		return;
+	}
+	if (f == NULL)
+	{
+		return;
+	}
 	f(name);
 }
 
