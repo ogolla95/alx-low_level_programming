@@ -3,20 +3,14 @@
 #include <stdio.h>
 
 /**
-  * print_name - initializes a variable
-  *
+  * print_name - print a name
   * @name: name.
   * @f: pointer.
   * Return: nothing.
   */
 void print_name(char *name, void (*f)(char *))
 {
-	if (name == NULL)
-	{
-		return;
-	}
-	if (f == NULL)
-	{
+	if (name == NULL || f == NULL)
 		return;
 	}
 	f(name);
