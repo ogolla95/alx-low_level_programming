@@ -1,69 +1,48 @@
-#include <stdlib.h>
 #include "lists.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * free_listint_safe - Frees a listint_t linked list safely.
- * @h: A pointer to a pointer to the head of the list.
+ * free_listint_safe - function that frees a listint_t list.
+ * @h: pointer to pointer to the head of linked list.
  *
- * Return: The size of the list that was freed.
+ * Return: the size of the list that was free. Otherwise 0.
  */
+
 size_t free_listint_safe(listint_t **h)
 {
-    listint_t *slow_ptr, *fast_ptr, *temp;
-    size_t count = 0;
+	listint_t *current;
+	listnode_t *nodes = NULL; /* stores address of nodes */
+	size_t count = 0;
 
-    if (h == NULL || *h == NULL)
-        return 0;
+	if (h == NULL)
+		return (0);
 
-    slow_ptr = *h;
-    fast_ptr = *h;
+	/* while you have not encountered a loop */
+	while (!is_in_nodes(nodes, *h))
+	{
+		/* check if the malloc fails then exit */
+		if (!add_nodeptr(&nodes, *h))
+		{
+			free_listnode(nodes);
+			exit(98);
+		}
+		current = *h;
+		*h = (*h)->next;
+		free(current);
+		/* print address of current node and the value of field n */
+		/* cast it a void pointer in order to print the address */
+		/* printf("[%p] %d\n", (void *)head, head->n); */
+		/* count the nodes */
+		count++;
+	}
+	/* if you encounter a loop */
+	if (*h != NULL)
+		*h = NULL;
 
-    while (slow_ptr != NULL && fast_ptr != NULL && fast_ptr->next != NULL)
-    {
-        slow_ptr = slow_ptr->next;
-        fast_ptr = fast_ptr->next->next;
-
-        if (slow_ptr == fast_ptr)
-        {
-            /* Detected a loop, free nodes before the loop */
-            slow_ptr = *h;
-
-            while (slow_ptr != fast_ptr)
-            {
-                temp = slow_ptr;
-                slow_ptr = slow_ptr->next;
-                free(temp);
-                count++;
-            }
-
-            /* Continue freeing nodes within the loop */
-            while (slow_ptr->next != fast_ptr)
-            {
-                temp = slow_ptr;
-                slow_ptr = slow_ptr->next;
-                free(temp);
-                count++;
-            }
-
-            /* Free the last node in the loop */
-            temp = slow_ptr;
-            slow_ptr = slow_ptr->next;
-            free(temp);
-            count++;
-
-            *h = NULL; /* Set the head to NULL */
-            break;
-        }
-    }
-
-    /* Free any remaining nodes in the list without a loop */
-    while (*h != NULL)
-    {
-        temp = *h;
-        *h = (*h)->next;
-        free(temp);
-        count++;
-    }
-
-    return count;
+	/* print where the loop starts */
+	/*	printf("-> [%p] %d\n", (void *)head, head->n); */
+	free_listnode(nodes);
+	/* return number of nodes */
+	return (count);
 }
